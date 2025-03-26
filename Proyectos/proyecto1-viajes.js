@@ -4,7 +4,7 @@
 const destinos = [];
 
 // Función para registrar un destino de viaje
-export const registrarDestino = (destino, fecha, transporte) => 
+export const registrarDestino = (destino, fecha, transporte, personas) => 
 {
     // TODO: Crear un objeto con los datos del destino
     const nuevoViaje = 
@@ -12,14 +12,15 @@ export const registrarDestino = (destino, fecha, transporte) =>
         destino: destino,
         fecha: fecha,
         transporte: transporte,
-        costo: calcularCosto(destino, transporte)
+        personas: personas,
+        costo: calcularCosto(destino, transporte, personas)
     };
 
     destinos.push(nuevoViaje);
 }
 
 // Función para calcular el costo del viaje
-export const calcularCosto = (destino, transporte) => 
+export const calcularCosto = (destino, transporte, personas) => 
 {
     let costoBase = 0;
 
@@ -38,6 +39,11 @@ export const calcularCosto = (destino, transporte) =>
             {
                 costoBase = 600;
             }
+            else 
+                if (destino === "CDMX") 
+                {
+                    costoBase = 300;
+                }
 
     // Costo adicional por tipo de transporte
     if (transporte === "Avión") 
@@ -49,6 +55,27 @@ export const calcularCosto = (destino, transporte) =>
         {
             costoBase += 100;
         }
+        else 
+            if (transporte === "Barco") 
+            {
+                costoBase += 300;
+            }
+
+    // Descuento por cantidad de personas
+    if (personas === 2) 
+        {
+            costoBase = costoBase - costoBase*0.2;
+        } 
+        else 
+            if (personas === 3) 
+            {
+                costoBase = costoBase - costoBase*0.25;
+            }
+            else 
+                if (personas >= 4) 
+                {
+                    costoBase = costoBase - costoBase*0.3;
+                }
 
     return costoBase;
 }
@@ -63,6 +90,7 @@ export const mostrarItinerario = () =>
         console.log("Destino: " + viaje.destino);
         console.log("Fecha: " + viaje.fecha);
         console.log("Transporte: " + viaje.transporte);
+        console.log("Personas: " + viaje.personas);
         console.log("Costo: $" + viaje.costo);
         console.log("---------------------------");
     });
