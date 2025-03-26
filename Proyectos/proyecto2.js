@@ -1,5 +1,7 @@
 // Lista de compras CON DUPLICADOS
 
+console.log("Lista de compras con duplicados usando arreglos: \n\n")
+
 let listaDeCompras = [];
 
 const agregarProducto = (producto) => listaDeCompras.push(producto);
@@ -20,6 +22,8 @@ eliminarProducto("Huevo");
 mostrarLista();
 
 // Lista de compras SIN DUPLICADOS
+
+console.log("\n \n Lista de compras sin duplicados usando set: \n\n")
 
 let listaCompras = new Set();
 
