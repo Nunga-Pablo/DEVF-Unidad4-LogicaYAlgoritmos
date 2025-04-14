@@ -25,6 +25,7 @@ function findGift(gifts, giftName, index = 0)
 }
 
 // Casos de ejemplo:
+
 // Llama a la función con los datos de entrada y muestra el resultado en la consola.
 // Llama a la función y prueba con diferentes regalos
 let giftToFind = "Lego";
